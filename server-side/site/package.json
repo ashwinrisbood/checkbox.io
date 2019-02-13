@@ -3,12 +3,21 @@
   "description": "Survey Design Server",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "test": "mocha",
+    "start": "node server.js start 3002",
+    "deploy": "pm2 start process.json",
+    "stop": "pm2 stop process.json"
+  },
   "dependencies": {
     "archiver": "~0.4.6",
+    "assert": "^1.4.1",
     "async": "^2.1.4",
+    "chai": "^4.2.0",
     "cors": "^2.7.1",
     "emailjs": "^1.0.8",
     "express": "3.x",
+    "got": "^9.6.0",
     "jade": "^1.11.0",
     "json5": "^0.5.1",
     "marked": "0.3.9",
