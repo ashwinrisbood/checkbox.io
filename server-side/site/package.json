@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "test": "mocha --timeout 10000",
+    "test": "mocha --exit",
     "start": "node server.js start 3002",
     "deploy": "pm2 start process.json",
     "stop": "pm2 stop process.json"
@@ -23,6 +23,7 @@
     "marked": "0.3.9",
     "mocha": "^5.2.0",
     "mongodb": "^2.2.22",
+    "pm2": "^3.2.9",
     "underscore": "^1.8.3",
     "validator": "^6.2.1"
   }
