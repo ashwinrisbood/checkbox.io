@@ -9,10 +9,9 @@ describe('main', function() {
 
           await main.start();
 
-          const response = await got('http://localhost:3002', {timeout:500})
+          const response = await got('http://localhost:3002/api/study/vote/status', {timeout:500})
           // Stop server
           await main.stop();
-          expect(response.body).to.include('Hi From');
       });
     });
   });
