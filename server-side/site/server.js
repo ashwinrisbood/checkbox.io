@@ -84,6 +84,35 @@ app.post('/api/study/admin/notify/', admin.notifyParticipant);
 //app.get('/api/design/survey/vote/stat/:id', votes.getSurveyStats );
 
 
+function start(){
+ 
+	return new Promise((resolve, reject) =>{
+	      server= app.listen(process.env.MONGO_PORT, () => {
+                var host = server.address().address
+	        var port = server.address().port
+                console.log('Example app listening at http://%s:%s', host, port)
+		resolve({host: host, port: port});
+               }).on('error', function (err) {
+			if(err.errno === 'EADDRINUSE') {
+				console.log(`----- Port ${port} is busy, try with another port`);
+			} else {
+				console.log(err);
+			}
+		});
+	});
+}
+function stop(){
+   return server.close();
+}
 
-app.listen(process.env.MONGO_PORT);
-console.log('Listening on port 3002...');
+var args = process.argv.slice(2);
+var CMD  = args[0] || "test";
+
+(async () => {
+	if( CMD === "start" )
+	{
+		await start();
+	}
+})();
+
+module.exports = { start: start, stop: stop};
