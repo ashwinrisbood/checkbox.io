@@ -8,15 +8,15 @@ function main()
 {
 	var args = process.argv.slice(2);
 	var filePath = [
-		__dirname + "\\..\\routes\\admin.js",
-		__dirname +"\\..\\routes\\create.js",
-		__dirname +"\\..\\routes\\csv.js",
-		__dirname +"\\..\\routes\\designer.js",
-		__dirname +"\\..\\routes\\live.js",
-		__dirname +"\\..\\routes\\study.js",
-		__dirname +"\\..\\routes\\studyModel.js",
-		__dirname +"\\..\\routes\\upload.js",
-		__dirname +"\\..\\marqdown.js"
+		__dirname + "/../routes/admin.js",
+		__dirname +"/../routes/create.js",
+		__dirname +"/../routes/csv.js",
+		__dirname +"/../routes/designer.js",
+		__dirname +"/../routes/live.js",
+		__dirname +"/../routes/study.js",
+		__dirname +"/../routes/studyModel.js",
+		__dirname +"/../routes/upload.js",
+		__dirname +"/../marqdown.js"
 	];
 
 	for (var i = 0; i < filePath.length; i++) {
