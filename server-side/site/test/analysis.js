@@ -18,15 +18,6 @@ function main()
 		__dirname +"\\..\\routes\\upload.js",
 		__dirname +"\\..\\marqdown.js"
 	];
-	
-/*
-if(a>b){
-
-}
-if(a>c){
-
-}
-*/
 
 	for (var i = 0; i < filePath.length; i++) {
 		complexity(filePath[i]);
@@ -136,19 +127,7 @@ function complexity(filePath)
 			if (builder.loc > MAX_METHOD_LINE) {
 				builder.LongMethod++;
 			}
-			
-			if (builder.loc>80)
-			{
-				status=false;
-			}
 
-			if(builder.ParameterCount<2){
-				status=false;
-			}
-			if(builder.MaxConditions>5){
-				status=false;
-			}
-				
 			traverseWithParents(node, function (child) 
 			{
 				if (isDecision(child))
@@ -169,29 +148,15 @@ function complexity(filePath)
 			});
 			builder.SimpleCyclomaticComplexity++;
 			builders[builder.FunctionName] = builder;
+
+			if (builder.LongMethod >= 1 || builder.ParameterCount > 3 || builder.MaxConditions > 2 ||
+				  builder.SimpleCyclomaticComplexity > 5)
+			{
+				status=false;
+			}
 		}
 	});
 }
-
-// Helper function for counting children of node.
-function childrenLength(node)
-{
-	var key, child;
-	var count = 0;
-	for (key in node) 
-	{
-		if (node.hasOwnProperty(key)) 
-		{
-			child = node[key];
-			if (typeof child === 'object' && child !== null && key != 'parent') 
-			{
-				count++;
-			}
-		}
-	}	
-	return count;
-}
-
 
 // Helper function for checking if a node is a "decision type node"
 function isDecision(node)
