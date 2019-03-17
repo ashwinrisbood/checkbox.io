@@ -1,7 +1,7 @@
 var esprima = require("esprima");
 var options = {tokens:true, tolerant: true, loc: true, range: true };
 var fs = require("fs");
-const MAX_METHOD_LINE = 50;
+const MAX_METHOD_LINE = 100;
 var status=true;
 var path = require('path');
 function main()
