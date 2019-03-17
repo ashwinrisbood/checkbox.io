@@ -2,6 +2,9 @@ var esprima = require("esprima");
 var options = {tokens:true, tolerant: true, loc: true, range: true };
 var fs = require("fs");
 const MAX_METHOD_LINE = 100;
+const MAX_PARAMETERS=4;
+const MAX_CONDITIONS=5;
+const CYCLOMATIC_COMPLEXITY=5;
 var status=true;
 var path = require('path');
 function main()
@@ -18,7 +21,12 @@ function main()
 		__dirname +"/../routes/upload.js",
 		__dirname +"/../marqdown.js"
 	];
-
+	console.log("==================CONDITIONS================");
+	console.log("MAX LINES IN A METHOD "+MAX_METHOD_LINE);	
+	console.log("MAX PARAMETERS "+MAX_PARAMETERS);	
+	console.log("MAX CONDITIONS "+MAX_CONDITIONS);	
+	console.log("SIMPLE CYCLOMATIC COMPLEXITY "+CYCLOMATIC_COMPLEXITY);	
+	console.log("===========================================");
 	for (var i = 0; i < filePath.length; i++) {
 		complexity(filePath[i]);
 	}
@@ -149,8 +157,8 @@ function complexity(filePath)
 			builder.SimpleCyclomaticComplexity++;
 			builders[builder.FunctionName] = builder;
 
-			if (builder.LongMethod >= 1 || builder.ParameterCount > 3 || builder.MaxConditions > 2 ||
-				  builder.SimpleCyclomaticComplexity > 5)
+			if (builder.LongMethod >= 1 || builder.ParameterCount > MAX_PARAMETERS || builder.MaxConditions > MAX_CONDITIONS ||
+				  builder.SimpleCyclomaticComplexity > CYCLOMATIC_COMPLEXITY)
 			{
 				status=false;
 			}
