@@ -1,0 +1,21 @@
+{
+  "name": "markdown_service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "marqdown.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node marqdown.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jade": "^1.11.0",
+    "json5": "^2.1.0",
+    "marked": "^0.6.2",
+    "underscore": "^1.9.1"
+  }
+}

@@ -6,10 +6,10 @@ var express = require('express'),
 	//upload = require('./routes/upload.js'),
 	create = require('./routes/create.js'),
 	study = require('./routes/study.js'),
-	admin = require('./routes/admin.js');
-
+	admin = require('./routes/admin.js'),
+        request= require('request');
 var app = express();
-
+var axios = require('axios');
 app.configure(function () {
     app.use(express.logger('dev'));     /* 'default', 'short', 'tiny', 'dev' */
     app.use(express.bodyParser());
@@ -25,13 +25,17 @@ var corsOptions = {
 
 app.options('/api/study/vote/submit/', cors(corsOptions));
 
-app.post('/api/design/survey', 
+app.post('/api/design/survey',
 	function(req,res)
 	{
-		console.log(req.body.markdown);
-		//var text = marqdown.render( req.query.markdown );
-		var text = marqdown.render( req.body.markdown );
-		res.send( {preview: text} );
+		axios({
+ 		     method: 'post',
+		     url: "http://localhost:3300/marqdownkube",
+		     data: { data: req.body.markdown },
+		})
+		//.then((data)=>console.log(data.data))
+		.then((data)=>res.send({preview: data.data} ))
+		.catch((err)=>console.log(err));
 	}
 );
 
@@ -94,7 +98,7 @@ function start(){
 		resolve({host: host, port: port});
                }).on('error', function (err) {
 			if(err.errno === 'EADDRINUSE') {
-				console.log(`----- Port ${port} is busy, try with another port`);
+				console.log(`----- Port is busy, try with another port`);
 			} else {
 				console.log(err);
 			}
