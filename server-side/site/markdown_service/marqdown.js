@@ -9,6 +9,10 @@ var templates = loadJadeTemplates();
 const bodyParser = require('body-parser');
 app.use(express.json());
 var axios = require('axios');
+
+app.get('/',function(req,res){
+	res.send("Service is running");
+})
 app.post('/marqdownkube', function(req,res)
 {
         var data = req.body.data;
