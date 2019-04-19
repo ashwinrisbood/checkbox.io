@@ -16,12 +16,10 @@ app.get('/',function(req,res){
 app.post('/marqdownkube', function(req,res)
 {
         var data = req.body.data;
-	console.log(data);
 	marked.setOptions({gfm:true,tables:true});
 
   	var lines = data.split("\n");
   	var header = ReadHeader(lines);
-	console.log(header);
   	var qOptions = JSON5.parse(header);
 
   	var body = ReadBody(lines);
