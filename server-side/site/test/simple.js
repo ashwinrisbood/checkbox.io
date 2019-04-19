@@ -14,10 +14,10 @@ describe('main', function() {
         assert.equal(200,response.statusCode); 
       });
     });
-    describe('metric check', () => {
-      it('should pass all metrics', async ()=>{
-            var  status = check.analyse();
-            assert.equal(true, status);
-      });
-    });
+   // describe('metric check', () => {
+    //  it('should pass all metrics', async ()=>{
+     //       var  status = check.analyse();
+      //      assert.equal(true, status);
+     // });
+    //});
   });
