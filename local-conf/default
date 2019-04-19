@@ -1,6 +1,6 @@
 server {
-  listen 80;
-  root /Users/gameweld/bitbucket/checkbox.io/checkbox.io/public_html/;
+  listen 3002;
+  root /var/www/html/checkbox_build/public_html/;
   index index.html index.htm;
 
   location / {
@@ -8,7 +8,7 @@ server {
   }
 
   location /api {
-      # node.js reverse proxy
+      #node.js reverse proxy
       proxy_set_header X-Real-IP $remote_addr;
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header Host $http_host;
