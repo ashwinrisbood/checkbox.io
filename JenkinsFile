@@ -1,62 +1,13 @@
-pipeline {
-  agent any
-     environment {
-       MONGO_IP='127.0.0.1'
-       MONGO_USER='mongoadmin'
-       MONGO_PASSWORD='mongoadmin'
-       MONGO_PORT='3002'
-       MAIL_SMTP='smpt.gmail.com'
-       MAIL_PASSWORD=''
-       MAIL_USER='araul'
+properties([pipelineTriggers([githubPush()])])
+
+node {
+    stage ('Checkout'){
+        git branch: 'exampleBranch', url: 'https://github.com/ashwinrisbood/checkbox.io.git'
     }
-    
-  stages {    
-    stage('SCM'){
-        steps{
-            script {
-                properties([pipelineTriggers([githubPush()])])
-             }
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/ashwinrisbood/checkbox.io']]])
-        }
+    stage ('Build'){
+        // steps
     }
-    stage('Cloning Git') {
-      steps {
-          
-        git([url:'root@138.197.67.129:/Project/ansible-srv/checkbox.io',branch:'master',credentialsId:'mykey'])
-      }
+    stage ('Test'){
+        // steps
     }
-    
-    stage('Install dependencies') {
-        
-      steps {
-        dir("server-side/site/") {
-          sh 'npm install'
-      }
-    }
-  }
- stage('build') {
-        steps {
-                dir("server-side/site/") {
-                    sh 'npm test'
-                }
-        }
-      }
-    stage('deploy to production') {
-        steps {
-            dir("../"){
-              sh "tar -pczf checkbox.tar.gz ./checkbox_build --exclude './checkbox_build/server-side/site/node_modules'"
-              sh "scp -i ../.ssh/do_rsa1 checkbox.tar.gz root@138.197.100.201:/var/www/html"   
-              sh "ssh  root@138.197.100.201 -i ../.ssh/do_rsa1 'tar -xvzf /var/www/html/checkbox.tar.gz'"
-            }
-        }
-    }
-    stage('start the server in production') {
-        steps {
-            dir("../"){
-              sh "ssh  root@138.197.100.201 -i ../.ssh/do_rsa1 'cd /var/www/html/checkbox_build/server-side/site && npm install'"
-            //   sh "ssh  root@138.197.100.201 -i ../.ssh/do_rsa1 'cd /var/www/html/checkbox_build/server-side/site && npm start'"
-            }
-        }
-    }
-  }
-}
+} 
