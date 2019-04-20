@@ -32,7 +32,7 @@ withEnv(['MONGO_PORT=3002', 'MONGO_IP=127.0.0.1', 'MONGO_USER=mongoadmin', 'MONG
         stage('start the server in production') {
                 dir("../"){	
                     sh "ssh  root@138.197.100.201 -i ../.ssh/do_rsa1 'cd /var/www/html/checkbox_build/server-side/site && npm install'"	
-                    sh "ssh  root@138.197.100.201 -i ../.ssh/do_rsa1 'cd /var/www/html/checkbox_build/server-side/site && npm start'"	
+                    //sh "ssh  root@138.197.100.201 -i ../.ssh/do_rsa1 'cd /var/www/html/checkbox_build/server-side/site && npm start'"	
                 }	
         }
     }
