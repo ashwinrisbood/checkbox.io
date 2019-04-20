@@ -4,7 +4,7 @@ node {
     	
 withEnv(['MONGO_PORT=3002', 'MONGO_IP=127.0.0.1', 'MONGO_USER=mongoadmin', 'MONGO_PASSWORD=mongoadmin', 'MAIL_SMPT=smtp.gmail.com', 'MAIL_USER=araul']) {
         stage ('Checkout'){
-            git branch: 'master', url: 'git@github.com:ashwinrisbood/checkbox.io.git'
+            git branch: 'master', url: 'https://github.com:ashwinrisbood/checkbox.io.git'
         }
         stage('Install dependencies') {	
         	
