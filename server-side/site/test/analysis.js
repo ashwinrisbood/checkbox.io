@@ -2,9 +2,9 @@ var esprima = require("esprima");
 var options = {tokens:true, tolerant: true, loc: true, range: true };
 var fs = require("fs");
 const MAX_METHOD_LINE = 100;
-const MAX_PARAMETERS=4;
-const MAX_CONDITIONS=5;
-const CYCLOMATIC_COMPLEXITY=5;
+const MAX_PARAMETERS=20;
+const MAX_CONDITIONS=20;
+const CYCLOMATIC_COMPLEXITY=20;
 var status=true;
 var path = require('path');
 function main()
