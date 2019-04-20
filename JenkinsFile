@@ -1,4 +1,7 @@
 properties([pipelineTriggers([githubPush()])])
+node {
+    git url: 'https://github.com/ashwinrisbood/checkbox.io.git', branch: 'master'
+}
 pipeline {
   agent any
      environment {
