@@ -2,7 +2,7 @@ properties([pipelineTriggers([githubPush()])])
 
 node {
     stage ('Checkout'){
-        git branch: 'exampleBranch', url: 'https://github.com/ashwinrisbood/checkbox.io.git'
+        git branch: 'master', url: 'https://github.com/ashwinrisbood/checkbox.io.git'
     }
     stage ('Build'){
         // steps
