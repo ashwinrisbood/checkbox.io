@@ -1,7 +1,7 @@
 var esprima = require("esprima");
 var options = {tokens:true, tolerant: true, loc: true, range: true };
 var fs = require("fs");
-const MAX_METHOD_LINE = 200;
+const MAX_METHOD_LINE = 500;
 const MAX_PARAMETERS=50;
 const MAX_CONDITIONS=50;
 const CYCLOMATIC_COMPLEXITY=50;
