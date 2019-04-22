@@ -30,7 +30,7 @@ app.post('/api/design/survey',
 	{
 		axios({
  		     method: 'post',
-		     url: "http://localhost:3300/marqdownkube",
+		     url: "http://10.0.0.240:3300/marqdownkube",
 		     data: { data: req.body.markdown },
 		})
 		//.then((data)=>console.log(data.data))
